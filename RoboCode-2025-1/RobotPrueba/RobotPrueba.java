@@ -21,12 +21,14 @@ public class RobotPrueba extends Robot
 		// setColors(Color.red,Color.blue,Color.green); // body,gun,radar
 
 		// Robot main loop
+		
+		/*Mientras no ocurra alguna de los 3metodos definidos*/
 		while(true) {
 			// Replace the next 4 lines with any behavior you would like
-			ahead(100);
-			turnGunRight(360);
-			back(100);
-			turnGunRight(360);
+			ahead(100);//avanza 100px
+			turnGunRight(360);//gira el cañon 360 grados
+			back(100);//retrocede 100px
+			turnGunRight(360);//gira el cañon 360 grados
 		}
 	}
 
@@ -35,7 +37,14 @@ public class RobotPrueba extends Robot
 	 */
 	public void onScannedRobot(ScannedRobotEvent e) {
 		// Replace the next line with any behavior you would like
-		fire(1);
+		out.println("Robot Scanned");
+		if (e.getDistance() < 100) {
+           fire(3);
+       } else if (e.getDistance() < 200){
+           fire(2);
+       }else{
+		   fire(1);
+	   }
 	}
 
 	/**
@@ -43,6 +52,7 @@ public class RobotPrueba extends Robot
 	 */
 	public void onHitByBullet(HitByBulletEvent e) {
 		// Replace the next line with any behavior you would like
+		out.println("I was hit");
 		back(10);
 	}
 	
@@ -51,6 +61,7 @@ public class RobotPrueba extends Robot
 	 */
 	public void onHitWall(HitWallEvent e) {
 		// Replace the next line with any behavior you would like
+		out.println("Hit a wall");
 		back(20);
 	}	
 }
